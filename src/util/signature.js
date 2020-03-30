@@ -4,7 +4,7 @@ const tweetnacl = require('tweetnacl')
 const {
   decodeUTF8,
   encodeBase64,
-  decodeBase64,
+  decodeBase64
 } = require('tweetnacl-util')
 
 /**
@@ -39,5 +39,5 @@ function verify (message, signature, publicKey) {
 
 module.exports = {
   sign,
-  verify,
+  verify
 }

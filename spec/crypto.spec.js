@@ -6,11 +6,10 @@ const {
   plaintext,
   ciphertext,
   formSecretKey,
-  formPublicKey,
+  formPublicKey
 } = require('./resources/crypto-data-20200322')
 
 describe('Crypto', function () {
-
   it('should generate a keypair', () => {
     const keypair = formsg.crypto.generate()
     expect(Object.keys(keypair)).toContain('secretKey')
@@ -31,7 +30,7 @@ describe('Crypto', function () {
     const { publicKey } = formsg.crypto.generate()
     expect(formsg.crypto.valid(
       publicKey,
-      secretKey,
+      secretKey
     )).toBe(false)
   })
 

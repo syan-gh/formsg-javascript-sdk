@@ -1,5 +1,4 @@
 
-
 const url = require('url')
 
 const { sign, verify } = require('./util/signature')
@@ -13,7 +12,7 @@ const STAGE = require('./util/stage')
  * @param {string} submissionId MongoDB submission ObjectId
  * @param {string} formId MongoDB submission ObjectId
  * @param {Number} epoch Number of milliseconds since Jan 1, 1970
- * @param {string} signature base64 encoded signature 
+ * @param {string} signature base64 encoded signature
  * @param {string} webhookPublicKey base64 webhook public key
  */
 function verifySignature (uri, submissionId, formId, epoch, signature, webhookPublicKey) {
@@ -27,7 +26,7 @@ function verifySignature (uri, submissionId, formId, epoch, signature, webhookPu
  * @param {Number} epoch The number of milliseconds since Jan 1, 1979
  * @param {Number} [expiry=30000] Duration of expiry. The default is 5 minutes.
  */
-function verifyEpoch (epoch, expiry=300000) {
+function verifyEpoch (epoch, expiry = 300000) {
   const difference = Date.now() - epoch
   return difference > 0 && difference < expiry
 }
@@ -41,7 +40,6 @@ function verifyEpoch (epoch, expiry=300000) {
  * @throws {Error} If the signature or uri cannot be verified
  */
 const authenticate = webhookPublicKey => (header, uri) => {
-
   // Parse the header
   const { v1: signature, t, s: submissionId, f: formId } =
     parseSignatureHeader(header)
@@ -113,6 +111,6 @@ module.exports = function ({ mode, webhookSecretKey }) {
     authenticate: authenticate(webhookPublicKey),
     /* Signing functions */
     generateSignature: webhookSecretKey ? generateSignature(webhookSecretKey) : undefined,
-    constructHeader: webhookSecretKey ? constructHeader : undefined,
+    constructHeader: webhookSecretKey ? constructHeader : undefined
   }
 }

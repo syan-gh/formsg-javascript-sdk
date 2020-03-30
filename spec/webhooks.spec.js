@@ -18,7 +18,7 @@ describe('Webhooks', () => {
     // X-FormSG-Signature
     const header = webhook.constructHeader({ epoch, submissionId, formId, signature })
 
-    expect(header).toBe(`t=1583136171649,s=someSubmissionId,f=someFormId,v1=KMirkrGJLPqu+Na+gdZLUxl9ZDgf2PnNGPnSoG1FuTMRUTiQ6o0jB/GTj1XFjn2s9JtsL5GiCmYROpjJhDyxCw==`)
+    expect(header).toBe('t=1583136171649,s=someSubmissionId,f=someFormId,v1=KMirkrGJLPqu+Na+gdZLUxl9ZDgf2PnNGPnSoG1FuTMRUTiQ6o0jB/GTj1XFjn2s9JtsL5GiCmYROpjJhDyxCw==')
   })
 
   it('should authenticate a signature that was recently generated', () => {

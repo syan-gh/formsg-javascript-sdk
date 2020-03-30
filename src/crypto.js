@@ -43,7 +43,7 @@ const {
  * Encrypted basestring containing the submission public key,
  * nonce and encrypted data in base-64.
  * @typedef {string} EncryptedContent
- * A string in the format of <SubmissionPublicKey>;<Base64Nonce>:<Base64EncryptedData> 
+ * A string in the format of <SubmissionPublicKey>;<Base64Nonce>:<Base64EncryptedData>
  */
 
 /**
@@ -73,8 +73,8 @@ function encrypt (formPublicKey, responses) {
  */
 function decrypt (formPrivateKey, encryptedContent) {
   try {
-    const [ submissionPublicKey, nonceEncrypted ] = encryptedContent.split(';')
-    const [ nonce, encrypted ] = nonceEncrypted.split(':').map(decodeBase64)
+    const [submissionPublicKey, nonceEncrypted] = encryptedContent.split(';')
+    const [nonce, encrypted] = nonceEncrypted.split(':').map(decodeBase64)
     const decrypted = nacl.box.open(
       encrypted,
       nonce,
@@ -102,14 +102,14 @@ function generate () {
   const kp = nacl.box.keyPair()
   return {
     publicKey: encodeBase64(kp.publicKey),
-    secretKey: encodeBase64(kp.secretKey),
+    secretKey: encodeBase64(kp.secretKey)
   }
 }
 
 /**
  * Returns true if a pair of public & secret keys are associated with each other
- * @param {string} publicKey 
- * @param {string} secretKey 
+ * @param {string} publicKey
+ * @param {string} secretKey
  */
 function valid (publicKey, secretKey) {
   const plaintext = 'testtext'
@@ -125,5 +125,5 @@ module.exports = {
   encrypt,
   decrypt,
   generate,
-  valid,
+  valid
 }

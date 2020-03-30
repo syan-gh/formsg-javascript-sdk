@@ -9,11 +9,11 @@ const crypto = require('./src/crypto')
  * @param {string} [options.webhookSecretKey] Optional base64 secret key for signing webhooks
  */
 module.exports = function ({
-  mode='production',
-  webhookSecretKey,
+  mode = 'production',
+  webhookSecretKey
 } = {}) {
-    return {
-      webhooks: webhooks({ mode, webhookSecretKey }),
-      crypto,
-    }
+  return {
+    webhooks: webhooks({ mode, webhookSecretKey }),
+    crypto
+  }
 }
