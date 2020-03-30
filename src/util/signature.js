@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const tweetnacl = require('tweetnacl')
-const {
-  decodeUTF8,
-  encodeBase64,
-  decodeBase64
-} = require('tweetnacl-util')
+var tweetnacl = require('tweetnacl');
+
+var _require = require('tweetnacl-util'),
+    decodeUTF8 = _require.decodeUTF8,
+    encodeBase64 = _require.encodeBase64,
+    decodeBase64 = _require.decodeBase64;
 
 /**
  * Returns a signature from a basestring and secret key
@@ -13,13 +13,10 @@ const {
  * @param  {string} secretKey 64-byte secret key in base64 encoding.
  * @return {string} base64 encoded signature
  */
-function sign (basestring, secretKey) {
-  return encodeBase64(
-    tweetnacl.sign.detached(
-      decodeUTF8(basestring),
-      decodeBase64(secretKey)
-    )
-  )
+
+
+function sign(basestring, secretKey) {
+  return encodeBase64(tweetnacl.sign.detached(decodeUTF8(basestring), decodeBase64(secretKey)));
 }
 
 /**
@@ -29,15 +26,11 @@ function sign (basestring, secretKey) {
  * @param {string} publicKey 32-byte public key in base64 encoding
  * @return {Boolean} True if verification checks out, false otherwise
  */
-function verify (message, signature, publicKey) {
-  return tweetnacl.sign.detached.verify(
-    decodeUTF8(message),
-    decodeBase64(signature),
-    decodeBase64(publicKey)
-  )
+function verify(message, signature, publicKey) {
+  return tweetnacl.sign.detached.verify(decodeUTF8(message), decodeBase64(signature), decodeBase64(publicKey));
 }
 
 module.exports = {
-  sign,
-  verify
-}
+  sign: sign,
+  verify: verify
+};
